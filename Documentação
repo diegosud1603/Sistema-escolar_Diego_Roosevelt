@@ -1,0 +1,155 @@
+Documentação da API
+Endpoints
+1. Listar Alunos Presentes em uma Sala
+URL: /salas/{id}/alunos
+Método: GET
+Descrição: Lista todos os alunos que estão presentes em uma sala específica.
+Parâmetros de URL:
+id (Long) - ID da sala.
+Resposta de Sucesso (200 OK):
+Conteúdo: Lista de alunos presentes na sala.
+Resposta de Erro:
+404 Not Found: Sala não encontrada.
+
+2. Listar Equipamentos de uma Sala
+URL: /salas/{id}
+Método: GET
+Descrição: Lista todos os equipamentos presentes em uma sala específica.
+Parâmetros de URL:
+id (Long) - ID da sala.
+Resposta de Sucesso (200 OK):
+Conteúdo: Lista de equipamentos da sala.
+Resposta de Erro:
+404 Not Found: Sala não encontrada.
+
+3. Exibir Pessoas na Escola
+URL: /pessoas
+Método: GET
+Descrição: Lista todas as pessoas que estão na escola.
+Resposta de Sucesso (200 OK):
+Conteúdo: Lista de pessoas na escola.
+Resposta de Erro:
+Nenhuma resposta de erro específica.
+
+4. Exibir Quantidade de Pessoas por Tipo
+URL: /pessoas/contagemPorTipo
+Método: GET
+Descrição: Exibe a quantidade de pessoas na escola por tipo (visitante, aluno, professor teórico e prático).
+Resposta de Sucesso (200 OK):
+Conteúdo: Mapa contendo a quantidade de pessoas por tipo.
+Resposta de Erro:
+Nenhuma resposta de erro específica.
+
+5. Registrar Entrada e Saída de Pessoas nas Salas
+URL para Entrada: /ControleAcesso/registrarEntrada
+URL para Saída: /ControleAcesso/registrarSaida
+Método: POST
+Descrição: Registra a entrada ou saída de uma pessoa de uma sala.
+Parâmetros de Requisição:
+Corpo da Requisição: Dados da pessoa (JSON) - nome, CPF, e outros dados necessários.
+Resposta de Sucesso (200 OK):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+400 Bad Request: Dados inválidos.
+404 Not Found: Pessoa ou sala não encontrada.
+403 Forbidden: Permissão negada.
+
+6. Listar Equipamentos Ligados e Seus Locais
+URL: /equipamentos/ligados
+Método: GET
+Descrição: Lista todos os equipamentos que estão ligados e seus respectivos locais.
+Resposta de Sucesso (200 OK):
+Conteúdo: Lista de equipamentos ligados e seus locais.
+Resposta de Erro:
+Nenhuma resposta de erro específica.
+
+7. Modificar a Situação de um Equipamento
+URL: /equipamentos/situacao/{numero}
+Método: PUT
+Descrição: Modifica a situação de um equipamento (ligar, desligar, etc.) a partir do número do patrimônio.
+Parâmetros de URL:
+numero (String) - Número de patrimônio do equipamento.
+Parâmetros de Requisição:
+Corpo da Requisição: Novo status do equipamento (JSON) - situação.
+Resposta de Sucesso (200 OK):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Equipamento não encontrado.
+400 Bad Request: Dados inválidos.
+
+8. Inclusão e Remoção de Equipamentos de uma Sala
+URL de Inclusão: /salas/{id}/equipamentos
+URL de Remoção: /salas/{id}/equipamentos/{numero}
+Método para Inclusão: POST
+Método para Remoção: DELETE
+Descrição: Permite incluir ou remover equipamentos de uma sala.
+Parâmetros de URL:
+id (Long) - ID da sala.
+numero (String) - Número do patrimônio do equipamento.
+Parâmetros de Requisição (Inclusão):
+Corpo da Requisição: Dados do equipamento (JSON).
+Resposta de Sucesso (200 OK para Inclusão, 204 No Content para Remoção):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Sala ou equipamento não encontrado.
+400 Bad Request: Dados inválidos.
+
+9. Gerenciar Equipamentos da Escola
+URL: /equipamentos
+Método: GET, POST, PUT, DELETE
+Descrição: Gerencia equipamentos da escola (listar, adicionar, atualizar, remover).
+Parâmetros de Requisição:
+GET: Nenhum.
+POST: Dados do equipamento (JSON).
+PUT: Dados atualizados do equipamento (JSON).
+DELETE: Número do patrimônio do equipamento.
+Resposta de Sucesso (200 OK, 201 Created, 204 No Content):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Equipamento não encontrado.
+400 Bad Request: Dados inválidos.
+
+10. Gerenciar Salas Disponíveis
+URL: /salas
+Método: GET, POST, PUT, DELETE
+Descrição: Gerencia as salas da escola (listar, adicionar, atualizar, remover).
+Parâmetros de Requisição:
+GET: Nenhum.
+POST: Dados da sala (JSON).
+PUT: Dados atualizados da sala (JSON).
+DELETE: ID da sala.
+Resposta de Sucesso (200 OK, 201 Created, 204 No Content):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Sala não encontrada.
+400 Bad Request: Dados inválidos.
+
+11. Gerenciar Pessoas da Escola
+URL: /pessoas
+Método: GET, POST, PUT, DELETE
+Descrição: Gerencia as pessoas da escola (listar, adicionar, atualizar, remover).
+Parâmetros de Requisição:
+GET: Nenhum.
+POST: Dados da pessoa (JSON).
+PUT: Dados atualizados da pessoa (JSON).
+DELETE: CPF da pessoa.
+Resposta de Sucesso (200 OK, 201 Created, 204 No Content):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Pessoa não encontrada.
+400 Bad Request: Dados inválidos.
+
+12. Abrir ou Fechar uma Sala
+URL para Abrir: /salas/{id}/abrir
+URL para Fechar: /salas/{id}/fechar
+Método: POST
+Descrição: Permite que uma pessoa abra ou feche uma sala.
+Parâmetros de URL:
+id (Long) - ID da sala.
+Parâmetros de Requisição:
+Corpo da Requisição: CPF da pessoa (JSON).
+Resposta de Sucesso (200 OK):
+Conteúdo: Mensagem de sucesso.
+Resposta de Erro:
+404 Not Found: Sala ou pessoa não encontrada.
+403 Forbidden: Permissão negada.
